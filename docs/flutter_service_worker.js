@@ -3,10 +3,11 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "f2562c0a07a6616f0c2014c59e09baea",
-"assets/AssetManifest.bin.json": "455ea72ce01d39dbd9df452f5db21e46",
-"assets/AssetManifest.json": "12fef30de8313d26622207c1046eaad6",
+const RESOURCES = {"assets/AssetManifest.bin": "507fc63110d0e9a68bac2169d825fdd6",
+"assets/AssetManifest.bin.json": "6782432cf50d41c55622e01d1ea0ffae",
+"assets/AssetManifest.json": "24529ab276dada11e4f5a5c06dbfe86e",
 "assets/assets/data/portfolio_data.json": "de425913e0528d13685d48ece6a6c98d",
+"assets/assets/images/profile.jpeg": "17316e256029886a9504374415bfcd03",
 "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
 "assets/fonts/MaterialIcons-Regular.otf": "0eea1d4d7dc31f3b157059f80df29d30",
 "assets/NOTICES": "7935794f07e8aac64ffe062a387ead97",
@@ -25,14 +26,14 @@ const RESOURCES = {"assets/AssetManifest.bin": "f2562c0a07a6616f0c2014c59e09baea
 "canvaskit/skwasm_heavy.wasm": "8034ad26ba2485dab2fd49bdd786837b",
 "favicon.png": "a64f788daa12a3286d4f831e59f93dcb",
 "flutter.js": "888483df48293866f9f41d3d9274a779",
-"flutter_bootstrap.js": "e4f1c545eeaf95f7032e362bbc820037",
+"flutter_bootstrap.js": "b9ee2e6be675c3eee6e80c61bf99f52d",
 "icons/Icon-192.png": "e4818f3e57d12c40b1ba61d73d1963a6",
 "icons/Icon-512.png": "c32540f4238dc358ff7329b3fac00bcb",
 "icons/Icon-maskable-192.png": "e4818f3e57d12c40b1ba61d73d1963a6",
 "icons/Icon-maskable-512.png": "c32540f4238dc358ff7329b3fac00bcb",
-"index.html": "3358ed17a7d844d46edbb2e343f5270c",
-"/": "3358ed17a7d844d46edbb2e343f5270c",
-"main.dart.js": "989a7f9b03d43c084a2cf84f6b7eeaa5",
+"index.html": "38d5f11d08fe02179754e44280562e24",
+"/": "38d5f11d08fe02179754e44280562e24",
+"main.dart.js": "d7e2334430fb93237c4e4a64a1ba4317",
 "manifest.json": "e74af8957b5899dc6da961caee768ec9",
 "version.json": "0325640b78b9f97959290dc5ebb8b3ed"};
 // The application shell files that are downloaded before a service worker can

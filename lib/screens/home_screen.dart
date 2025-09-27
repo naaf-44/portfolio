@@ -14,7 +14,14 @@ import '../widgets/floating_contact_button.dart';
 import '../widgets/navigation_bar.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final VoidCallback? onThemeToggle;
+  final ThemeMode? currentThemeMode;
+
+  const HomeScreen({
+    super.key,
+    this.onThemeToggle,
+    this.currentThemeMode,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -37,7 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
   PortfolioModel? portfolioData;
   bool isLoading = true;
   String? error;
-  bool isDarkMode = false;
 
   @override
   void initState() {
@@ -71,17 +77,15 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  void _toggleTheme() {
-    setState(() {
-      isDarkMode = !isDarkMode;
-    });
+  bool get _isDarkMode {
+    return widget.currentThemeMode == ThemeMode.dark ||
+        (widget.currentThemeMode == ThemeMode.system &&
+            MediaQuery.of(context).platformBrightness == Brightness.dark);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: isDarkMode ? ThemeData.dark() : ThemeData.light(),
-      child: Scaffold(
+    return Scaffold(
         body: isLoading
             ? const Center(child: CircularProgressIndicator())
             : error != null
@@ -153,8 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         right: 0,
                         child: NavigationBarWidget(
                           onSectionTap: _scrollToSection,
-                          onThemeToggle: _toggleTheme,
-                          isDarkMode: isDarkMode,
+                          onThemeToggle: widget.onThemeToggle ?? () {},
+                          isDarkMode: _isDarkMode,
                         ),
                       ),
                       
@@ -168,7 +172,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-      ),
     );
   }
 }

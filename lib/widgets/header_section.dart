@@ -43,6 +43,7 @@ class HeaderSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          SizedBox(height: isMobile ? 20 : 0),
           // Profile Avatar
           ScrollAnimatedWidget(
             id: 'header-avatar',
@@ -78,17 +79,22 @@ class HeaderSection extends StatelessWidget {
                 ],
               ),
               child: Center(
-                child: Text(
-                  personalInfo.name.split(' ').map((e) => e[0]).join(),
-                  style: theme.textTheme.displayMedium?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: ResponsiveHelper.getResponsiveFontSize(
+                child: ClipOval(
+                  child: Image.asset(
+                    "assets/images/profile.jpeg",
+                    width: ResponsiveHelper.getResponsiveFontSize(
                       context,
-                      mobile: 24,
-                      tablet: 28,
-                      desktop: 32,
+                      mobile: 90,
+                      tablet: 80,
+                      desktop: 130,
                     ),
+                    height: ResponsiveHelper.getResponsiveFontSize(
+                      context,
+                      mobile: 90,
+                      tablet: 80,
+                      desktop: 130,
+                    ),
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
