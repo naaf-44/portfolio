@@ -5,10 +5,7 @@ import 'scroll_animated_widget.dart';
 class CareerObjectiveSection extends StatelessWidget {
   final String objective;
 
-  const CareerObjectiveSection({
-    super.key,
-    required this.objective,
-  });
+  const CareerObjectiveSection({super.key, required this.objective});
 
   @override
   Widget build(BuildContext context) {
@@ -51,16 +48,17 @@ class CareerObjectiveSection extends StatelessWidget {
               ),
             ),
           ),
-          
+
           SizedBox(height: isMobile ? 30 : 40),
-          
+
           ScrollAnimatedWidget(
             id: 'career-content',
             delay: const Duration(milliseconds: 200),
             scaleBegin: 0.8,
             child: Container(
               constraints: BoxConstraints(
-                maxWidth: ResponsiveHelper.isDesktop(context) ? 800 : double.infinity,
+                maxWidth:
+                    ResponsiveHelper.isDesktop(context) ? 800 : double.infinity,
               ),
               padding: EdgeInsets.all(isMobile ? 20 : 30),
               decoration: BoxDecoration(
@@ -68,18 +66,18 @@ class CareerObjectiveSection extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    theme.colorScheme.primary.withOpacity(0.05),
-                    theme.colorScheme.secondary.withOpacity(0.05),
+                    theme.colorScheme.primary.withValues(alpha: 0.05),
+                    theme.colorScheme.secondary.withValues(alpha: 0.05),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(isMobile ? 16 : 20),
                 border: Border.all(
-                  color: theme.colorScheme.primary.withOpacity(0.2),
+                  color: theme.colorScheme.primary.withValues(alpha: 0.2),
                   width: 1,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: theme.colorScheme.primary.withOpacity(0.1),
+                    color: theme.colorScheme.primary.withValues(alpha: 0.1),
                     blurRadius: isMobile ? 15 : 20,
                     offset: Offset(0, isMobile ? 5 : 10),
                   ),

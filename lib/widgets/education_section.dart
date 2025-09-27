@@ -6,10 +6,7 @@ import 'scroll_animated_widget.dart';
 class EducationSection extends StatelessWidget {
   final List<Education> education;
 
-  const EducationSection({
-    super.key,
-    required this.education,
-  });
+  const EducationSection({super.key, required this.education});
 
   @override
   Widget build(BuildContext context) {
@@ -52,16 +49,18 @@ class EducationSection extends StatelessWidget {
               ),
             ),
           ),
-          
+
           SizedBox(height: isMobile ? 30 : 50),
-          
+
           Container(
             constraints: BoxConstraints(
-              maxWidth: ResponsiveHelper.isDesktop(context) ? 1200 : double.infinity,
+              maxWidth:
+                  ResponsiveHelper.isDesktop(context) ? 1200 : double.infinity,
             ),
-            child: ResponsiveHelper.isDesktop(context)
-                ? _buildDesktopGrid(context)
-                : _buildMobileList(context),
+            child:
+                ResponsiveHelper.isDesktop(context)
+                    ? _buildDesktopGrid(context)
+                    : _buildMobileList(context),
           ),
         ],
       ),
@@ -97,26 +96,27 @@ class EducationSection extends StatelessWidget {
 
   Widget _buildMobileList(BuildContext context) {
     return Column(
-      children: education.asMap().entries.map((entry) {
-        final index = entry.key;
-        final edu = entry.value;
-        return ScrollAnimatedWidget(
-          id: 'education-mobile-$index',
-          delay: Duration(milliseconds: 200 * index),
-          scaleBegin: 0.8,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: _buildEducationCard(context, edu, index),
-          ),
-        );
-      }).toList(),
+      children:
+          education.asMap().entries.map((entry) {
+            final index = entry.key;
+            final edu = entry.value;
+            return ScrollAnimatedWidget(
+              id: 'education-mobile-$index',
+              delay: Duration(milliseconds: 200 * index),
+              scaleBegin: 0.8,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: _buildEducationCard(context, edu, index),
+              ),
+            );
+          }).toList(),
     );
   }
 
   Widget _buildEducationCard(BuildContext context, Education edu, int index) {
     final theme = Theme.of(context);
     final isMobile = ResponsiveHelper.isMobile(context);
-    
+
     return Container(
       padding: EdgeInsets.all(isMobile ? 16 : 24),
       decoration: BoxDecoration(
@@ -124,17 +124,17 @@ class EducationSection extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            theme.colorScheme.primary.withOpacity(0.05),
-            theme.colorScheme.secondary.withOpacity(0.05),
+            theme.colorScheme.primary.withValues(alpha: 0.05),
+            theme.colorScheme.secondary.withValues(alpha: 0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(isMobile ? 12 : 16),
         border: Border.all(
-          color: theme.colorScheme.primary.withOpacity(0.2),
+          color: theme.colorScheme.primary.withValues(alpha: 0.2),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: isMobile ? 10 : 15,
             offset: Offset(0, isMobile ? 3 : 5),
           ),
@@ -188,9 +188,9 @@ class EducationSection extends StatelessWidget {
               ),
             ],
           ),
-          
+
           SizedBox(height: isMobile ? 12 : 16),
-          
+
           Text(
             edu.institution,
             style: theme.textTheme.bodyLarge?.copyWith(
@@ -203,16 +203,16 @@ class EducationSection extends StatelessWidget {
               ),
             ),
           ),
-          
+
           SizedBox(height: isMobile ? 6 : 8),
-          
+
           Container(
             padding: EdgeInsets.symmetric(
               horizontal: isMobile ? 8 : 12,
               vertical: isMobile ? 4 : 6,
             ),
             decoration: BoxDecoration(
-              color: theme.colorScheme.secondary.withOpacity(0.1),
+              color: theme.colorScheme.secondary.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(

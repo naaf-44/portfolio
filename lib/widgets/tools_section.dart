@@ -5,10 +5,7 @@ import 'scroll_animated_widget.dart';
 class ToolsSection extends StatelessWidget {
   final List<String> tools;
 
-  const ToolsSection({
-    super.key,
-    required this.tools,
-  });
+  const ToolsSection({super.key, required this.tools});
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +28,7 @@ class ToolsSection extends StatelessWidget {
           desktop: 80,
         ),
       ),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-      ),
+      decoration: BoxDecoration(color: theme.colorScheme.surface),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -54,27 +49,31 @@ class ToolsSection extends StatelessWidget {
               ),
             ),
           ),
-          
+
           SizedBox(height: isMobile ? 30 : 50),
-          
+
           ScrollAnimatedWidget(
             id: 'tools-grid',
             delay: const Duration(milliseconds: 200),
             scaleBegin: 0.8,
             child: Container(
               constraints: BoxConstraints(
-                maxWidth: ResponsiveHelper.isDesktop(context) ? 1200 : double.infinity,
+                maxWidth:
+                    ResponsiveHelper.isDesktop(context)
+                        ? 1200
+                        : double.infinity,
               ),
               child: Wrap(
                 spacing: isMobile ? 8 : 12,
                 runSpacing: isMobile ? 8 : 12,
                 alignment: WrapAlignment.center,
-                children: tools.asMap().entries.map((entry) {
-                  final index = entry.key;
-                  final tool = entry.value;
-                  
-                  return _buildToolChip(context, tool, index);
-                }).toList(),
+                children:
+                    tools.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final tool = entry.value;
+
+                      return _buildToolChip(context, tool, index);
+                    }).toList(),
               ),
             ),
           ),
@@ -86,7 +85,7 @@ class ToolsSection extends StatelessWidget {
   Widget _buildToolChip(BuildContext context, String tool, int index) {
     final theme = Theme.of(context);
     final isMobile = ResponsiveHelper.isMobile(context);
-    
+
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 12 : 16,
@@ -97,17 +96,17 @@ class ToolsSection extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            theme.colorScheme.primary.withOpacity(0.1),
-            theme.colorScheme.secondary.withOpacity(0.1),
+            theme.colorScheme.primary.withValues(alpha: 0.1),
+            theme.colorScheme.secondary.withValues(alpha: 0.1),
           ],
         ),
         borderRadius: BorderRadius.circular(25),
         border: Border.all(
-          color: theme.colorScheme.primary.withOpacity(0.3),
+          color: theme.colorScheme.primary.withValues(alpha: 0.3),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: isMobile ? 6 : 8,
             offset: Offset(0, isMobile ? 1 : 2),
           ),
@@ -137,7 +136,7 @@ class ToolsSection extends StatelessWidget {
 
   IconData _getToolIcon(String tool) {
     final toolLower = tool.toLowerCase();
-    
+
     if (toolLower.contains('android') || toolLower.contains('studio')) {
       return Icons.android;
     } else if (toolLower.contains('xcode')) {
@@ -148,7 +147,9 @@ class ToolsSection extends StatelessWidget {
       return Icons.phone_android;
     } else if (toolLower.contains('firebase')) {
       return Icons.local_fire_department;
-    } else if (toolLower.contains('database') || toolLower.contains('mysql') || toolLower.contains('sqlite')) {
+    } else if (toolLower.contains('database') ||
+        toolLower.contains('mysql') ||
+        toolLower.contains('sqlite')) {
       return Icons.storage;
     } else if (toolLower.contains('api') || toolLower.contains('rest')) {
       return Icons.api;
@@ -156,9 +157,13 @@ class ToolsSection extends StatelessWidget {
       return Icons.payment;
     } else if (toolLower.contains('excel') || toolLower.contains('word')) {
       return Icons.description;
-    } else if (toolLower.contains('email') || toolLower.contains('gmail') || toolLower.contains('outlook')) {
+    } else if (toolLower.contains('email') ||
+        toolLower.contains('gmail') ||
+        toolLower.contains('outlook')) {
       return Icons.email;
-    } else if (toolLower.contains('teams') || toolLower.contains('meet') || toolLower.contains('chat')) {
+    } else if (toolLower.contains('teams') ||
+        toolLower.contains('meet') ||
+        toolLower.contains('chat')) {
       return Icons.video_call;
     } else if (toolLower.contains('web') || toolLower.contains('html')) {
       return Icons.web;

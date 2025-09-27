@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import '../models/portfolio_model.dart';
 import '../services/portfolio_service.dart';
 import '../widgets/header_section.dart';

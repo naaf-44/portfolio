@@ -54,11 +54,9 @@ class AppTheme {
       primary: primaryColor,
       secondary: secondaryColor,
       surface: surfaceColor,
-      background: backgroundColor,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
       onSurface: textPrimaryColor,
-      onBackground: textPrimaryColor,
     ),
     cardTheme: CardThemeData(
       elevation: 4,
@@ -114,11 +112,9 @@ class AppTheme {
       primary: primaryColor,
       secondary: secondaryColor,
       surface: darkSurfaceColor,
-      background: darkBackgroundColor,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
       onSurface: darkTextPrimaryColor,
-      onBackground: darkTextPrimaryColor,
     ),
     cardTheme: CardThemeData(
       elevation: 4,

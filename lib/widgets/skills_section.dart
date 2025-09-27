@@ -5,10 +5,7 @@ import 'scroll_animated_widget.dart';
 class SkillsSection extends StatelessWidget {
   final List<String> skills;
 
-  const SkillsSection({
-    super.key,
-    required this.skills,
-  });
+  const SkillsSection({super.key, required this.skills});
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +28,7 @@ class SkillsSection extends StatelessWidget {
           desktop: 80,
         ),
       ),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-      ),
+      decoration: BoxDecoration(color: theme.colorScheme.surface),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -54,25 +49,27 @@ class SkillsSection extends StatelessWidget {
               ),
             ),
           ),
-          
+
           SizedBox(height: isMobile ? 30 : 50),
-          
+
           Container(
             constraints: BoxConstraints(
-              maxWidth: ResponsiveHelper.isDesktop(context) ? 1200 : double.infinity,
+              maxWidth:
+                  ResponsiveHelper.isDesktop(context) ? 1200 : double.infinity,
             ),
             child: Column(
-              children: skills.asMap().entries.map((entry) {
-                final index = entry.key;
-                final skill = entry.value;
-                
-                return ScrollAnimatedWidget(
-                  id: 'skill-$index',
-                  delay: Duration(milliseconds: 100 * index),
-                  slideBegin: Offset(index.isEven ? -0.3 : 0.3, 0),
-                  child: _buildSkillCard(context, skill, index),
-                );
-              }).toList(),
+              children:
+                  skills.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final skill = entry.value;
+
+                    return ScrollAnimatedWidget(
+                      id: 'skill-$index',
+                      delay: Duration(milliseconds: 100 * index),
+                      slideBegin: Offset(index.isEven ? -0.3 : 0.3, 0),
+                      child: _buildSkillCard(context, skill, index),
+                    );
+                  }).toList(),
             ),
           ),
         ],
@@ -86,7 +83,7 @@ class SkillsSection extends StatelessWidget {
     final parts = skill.split(':');
     final title = parts.isNotEmpty ? parts[0].trim() : skill;
     final description = parts.length > 1 ? parts[1].trim() : '';
-    
+
     return Container(
       margin: EdgeInsets.only(bottom: isMobile ? 16 : 20),
       padding: EdgeInsets.all(isMobile ? 16 : 24),
@@ -95,13 +92,13 @@ class SkillsSection extends StatelessWidget {
         borderRadius: BorderRadius.circular(isMobile ? 12 : 16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: isMobile ? 10 : 15,
             offset: Offset(0, isMobile ? 3 : 5),
           ),
         ],
         border: Border.all(
-          color: theme.colorScheme.primary.withOpacity(0.1),
+          color: theme.colorScheme.primary.withValues(alpha: 0.1),
         ),
       ),
       child: Column(
@@ -112,7 +109,7 @@ class SkillsSection extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(isMobile ? 6 : 8),
                 decoration: BoxDecoration(
-                  color: theme.colorScheme.primary.withOpacity(0.1),
+                  color: theme.colorScheme.primary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(isMobile ? 6 : 8),
                 ),
                 child: Icon(
@@ -139,7 +136,7 @@ class SkillsSection extends StatelessWidget {
               ),
             ],
           ),
-          
+
           if (description.isNotEmpty) ...[
             SizedBox(height: isMobile ? 8 : 12),
             Text(
@@ -163,14 +160,17 @@ class SkillsSection extends StatelessWidget {
 
   IconData _getSkillIcon(String skill) {
     final skillLower = skill.toLowerCase();
-    
+
     if (skillLower.contains('flutter') || skillLower.contains('dart')) {
       return Icons.phone_android;
-    } else if (skillLower.contains('api') || skillLower.contains('integration')) {
+    } else if (skillLower.contains('api') ||
+        skillLower.contains('integration')) {
       return Icons.api;
-    } else if (skillLower.contains('firebase') || skillLower.contains('database')) {
+    } else if (skillLower.contains('firebase') ||
+        skillLower.contains('database')) {
       return Icons.storage;
-    } else if (skillLower.contains('payment') || skillLower.contains('gateway')) {
+    } else if (skillLower.contains('payment') ||
+        skillLower.contains('gateway')) {
       return Icons.payment;
     } else if (skillLower.contains('maps') || skillLower.contains('location')) {
       return Icons.map;

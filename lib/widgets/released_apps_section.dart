@@ -7,10 +7,7 @@ import 'scroll_animated_widget.dart';
 class ReleasedAppsSection extends StatelessWidget {
   final List<ReleasedApp> releasedApps;
 
-  const ReleasedAppsSection({
-    super.key,
-    required this.releasedApps,
-  });
+  const ReleasedAppsSection({super.key, required this.releasedApps});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +30,7 @@ class ReleasedAppsSection extends StatelessWidget {
           desktop: 80,
         ),
       ),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-      ),
+      decoration: BoxDecoration(color: theme.colorScheme.surface),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -56,16 +51,18 @@ class ReleasedAppsSection extends StatelessWidget {
               ),
             ),
           ),
-          
+
           SizedBox(height: isMobile ? 30 : 50),
-          
+
           Container(
             constraints: BoxConstraints(
-              maxWidth: ResponsiveHelper.isDesktop(context) ? 1000 : double.infinity,
+              maxWidth:
+                  ResponsiveHelper.isDesktop(context) ? 1000 : double.infinity,
             ),
-            child: ResponsiveHelper.isDesktop(context)
-                ? _buildDesktopGrid(context)
-                : _buildMobileList(context),
+            child:
+                ResponsiveHelper.isDesktop(context)
+                    ? _buildDesktopGrid(context)
+                    : _buildMobileList(context),
           ),
         ],
       ),
@@ -101,46 +98,47 @@ class ReleasedAppsSection extends StatelessWidget {
 
   Widget _buildMobileList(BuildContext context) {
     return Column(
-      children: releasedApps.asMap().entries.map((entry) {
-        final index = entry.key;
-        final app = entry.value;
-        return ScrollAnimatedWidget(
-          id: 'app-mobile-$index',
-          delay: Duration(milliseconds: 150 * index),
-          slideBegin: Offset(index.isEven ? -0.3 : 0.3, 0),
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: _buildAppCard(context, app, index),
-          ),
-        );
-      }).toList(),
+      children:
+          releasedApps.asMap().entries.map((entry) {
+            final index = entry.key;
+            final app = entry.value;
+            return ScrollAnimatedWidget(
+              id: 'app-mobile-$index',
+              delay: Duration(milliseconds: 150 * index),
+              slideBegin: Offset(index.isEven ? -0.3 : 0.3, 0),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: _buildAppCard(context, app, index),
+              ),
+            );
+          }).toList(),
     );
   }
 
   Widget _buildAppCard(BuildContext context, ReleasedApp app, int index) {
     final theme = Theme.of(context);
     final isMobile = ResponsiveHelper.isMobile(context);
-    
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            theme.colorScheme.primary.withOpacity(0.1),
-            theme.colorScheme.secondary.withOpacity(0.1),
+            theme.colorScheme.primary.withValues(alpha: 0.1),
+            theme.colorScheme.secondary.withValues(alpha: 0.1),
           ],
         ),
         borderRadius: BorderRadius.circular(isMobile ? 12 : 16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: isMobile ? 10 : 15,
             offset: Offset(0, isMobile ? 3 : 5),
           ),
         ],
         border: Border.all(
-          color: theme.colorScheme.primary.withOpacity(0.2),
+          color: theme.colorScheme.primary.withValues(alpha: 0.2),
         ),
       ),
       child: Material(
@@ -164,9 +162,9 @@ class ReleasedAppsSection extends StatelessWidget {
                     size: isMobile ? 20 : 24,
                   ),
                 ),
-                
+
                 SizedBox(width: isMobile ? 12 : 16),
-                
+
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,14 +187,16 @@ class ReleasedAppsSection extends StatelessWidget {
                       Text(
                         'Tap to view app',
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.7),
+                          color: theme.colorScheme.onSurface.withValues(
+                            alpha: 0.7,
+                          ),
                           fontSize: isMobile ? 12 : 14,
                         ),
                       ),
                     ],
                   ),
                 ),
-                
+
                 Icon(
                   Icons.launch,
                   color: theme.colorScheme.primary,

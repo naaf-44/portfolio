@@ -6,10 +6,7 @@ import 'scroll_animated_widget.dart';
 class ProjectsSection extends StatefulWidget {
   final List<Project> projects;
 
-  const ProjectsSection({
-    super.key,
-    required this.projects,
-  });
+  const ProjectsSection({super.key, required this.projects});
 
   @override
   State<ProjectsSection> createState() => _ProjectsSectionState();
@@ -59,25 +56,27 @@ class _ProjectsSectionState extends State<ProjectsSection> {
               ),
             ),
           ),
-          
+
           SizedBox(height: isMobile ? 30 : 50),
-          
+
           Container(
             constraints: BoxConstraints(
-              maxWidth: ResponsiveHelper.isDesktop(context) ? 1200 : double.infinity,
+              maxWidth:
+                  ResponsiveHelper.isDesktop(context) ? 1200 : double.infinity,
             ),
             child: Column(
-              children: widget.projects.asMap().entries.map((entry) {
-                final index = entry.key;
-                final project = entry.value;
-                
-                return ScrollAnimatedWidget(
-                  id: 'project-$index',
-                  delay: Duration(milliseconds: 200 * index),
-                  slideBegin: const Offset(0, 0.3),
-                  child: _buildProjectCard(context, project, index),
-                );
-              }).toList(),
+              children:
+                  widget.projects.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final project = entry.value;
+
+                    return ScrollAnimatedWidget(
+                      id: 'project-$index',
+                      delay: Duration(milliseconds: 200 * index),
+                      slideBegin: const Offset(0, 0.3),
+                      child: _buildProjectCard(context, project, index),
+                    );
+                  }).toList(),
             ),
           ),
         ],
@@ -90,7 +89,7 @@ class _ProjectsSectionState extends State<ProjectsSection> {
     final isMobile = ResponsiveHelper.isMobile(context);
     final isExpanded = _expandedProjects.contains(index);
     final truncateLength = isMobile ? 100 : 150;
-    
+
     return Container(
       margin: EdgeInsets.only(bottom: isMobile ? 20 : 30),
       decoration: BoxDecoration(
@@ -98,20 +97,20 @@ class _ProjectsSectionState extends State<ProjectsSection> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            theme.colorScheme.primary.withOpacity(0.05),
-            theme.colorScheme.secondary.withOpacity(0.05),
+            theme.colorScheme.primary.withValues(alpha: 0.05),
+            theme.colorScheme.secondary.withValues(alpha: 0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(isMobile ? 16 : 20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: isMobile ? 15 : 20,
             offset: Offset(0, isMobile ? 5 : 10),
           ),
         ],
         border: Border.all(
-          color: theme.colorScheme.primary.withOpacity(0.2),
+          color: theme.colorScheme.primary.withValues(alpha: 0.2),
         ),
       ),
       child: Material(
@@ -169,9 +168,9 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                     ),
                   ],
                 ),
-                
+
                 SizedBox(height: isMobile ? 12 : 16),
-                
+
                 AnimatedCrossFade(
                   firstChild: Text(
                     project.description.length > truncateLength
@@ -201,12 +200,13 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                       ),
                     ),
                   ),
-                  crossFadeState: isExpanded
-                      ? CrossFadeState.showSecond
-                      : CrossFadeState.showFirst,
+                  crossFadeState:
+                      isExpanded
+                          ? CrossFadeState.showSecond
+                          : CrossFadeState.showFirst,
                   duration: const Duration(milliseconds: 300),
                 ),
-                
+
                 if (project.description.length > truncateLength) ...[
                   SizedBox(height: isMobile ? 8 : 12),
                   Text(

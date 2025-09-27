@@ -16,14 +16,14 @@ class NavigationBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Container(
       height: 70,
       decoration: BoxDecoration(
-        color: theme.colorScheme.surface.withOpacity(0.95),
+        color: theme.colorScheme.surface.withValues(alpha: 0.95),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -34,18 +34,19 @@ class NavigationBarWidget extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              'Portfolio',
-              style: theme.textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: theme.colorScheme.primary,
-              ),
-            ).animate()
-              .fadeIn(duration: 800.ms)
-              .slideX(begin: -0.5, curve: Curves.easeOutBack)
-              .then(delay: 1000.ms)
-              .shimmer(duration: 2000.ms),
+                  'Portfolio',
+                  style: theme.textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: theme.colorScheme.primary,
+                  ),
+                )
+                .animate()
+                .fadeIn(duration: 800.ms)
+                .slideX(begin: -0.5, curve: Curves.easeOutBack)
+                .then(delay: 1000.ms)
+                .shimmer(duration: 2000.ms),
             const Spacer(),
-            
+
             // Desktop Navigation
             if (MediaQuery.of(context).size.width > 768) ...[
               _buildNavItem(context, 'Home', 'header'),
@@ -56,23 +57,26 @@ class NavigationBarWidget extends StatelessWidget {
               _buildNavItem(context, 'Apps', 'apps'),
               const SizedBox(width: 20),
             ],
-            
+
             // Theme Toggle
             IconButton(
-              onPressed: onThemeToggle,
-              icon: Icon(
-                isDarkMode ? Icons.light_mode : Icons.dark_mode,
-                color: theme.colorScheme.primary,
-              ),
-            ).animate()
-              .scale(delay: 100.ms, curve: Curves.elasticOut)
-              .then(delay: 500.ms)
-              .animate(onPlay: (controller) => controller.repeat(reverse: true))
-              .rotate(duration: 4000.ms, begin: 0, end: 0.05)
-              .then()
-              .rotate(duration: 4000.ms, begin: 0.05, end: -0.05)
-              .then()
-              .rotate(duration: 4000.ms, begin: -0.05, end: 0),
+                  onPressed: onThemeToggle,
+                  icon: Icon(
+                    isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                    color: theme.colorScheme.primary,
+                  ),
+                )
+                .animate()
+                .scale(delay: 100.ms, curve: Curves.elasticOut)
+                .then(delay: 500.ms)
+                .animate(
+                  onPlay: (controller) => controller.repeat(reverse: true),
+                )
+                .rotate(duration: 4000.ms, begin: 0, end: 0.05)
+                .then()
+                .rotate(duration: 4000.ms, begin: 0.05, end: -0.05)
+                .then()
+                .rotate(duration: 4000.ms, begin: -0.05, end: 0),
           ],
         ),
       ),
@@ -81,22 +85,23 @@ class NavigationBarWidget extends StatelessWidget {
 
   Widget _buildNavItem(BuildContext context, String title, String section) {
     final theme = Theme.of(context);
-    
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: TextButton(
-        onPressed: () => onSectionTap(section),
-        child: Text(
-          title,
-          style: theme.textTheme.bodyLarge?.copyWith(
-            fontWeight: FontWeight.w500,
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: TextButton(
+            onPressed: () => onSectionTap(section),
+            child: Text(
+              title,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
-        ),
-      ),
-    ).animate()
-      .fadeIn(delay: 200.ms, duration: 600.ms)
-      .slideY(begin: -0.5, curve: Curves.easeOutBack)
-      .then(delay: 300.ms)
-      .shimmer(duration: 1000.ms);
+        )
+        .animate()
+        .fadeIn(delay: 200.ms, duration: 600.ms)
+        .slideY(begin: -0.5, curve: Curves.easeOutBack)
+        .then(delay: 300.ms)
+        .shimmer(duration: 1000.ms);
   }
 }

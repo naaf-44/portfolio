@@ -6,16 +6,13 @@ import 'scroll_animated_widget.dart';
 class HeaderSection extends StatelessWidget {
   final PersonalInfo personalInfo;
 
-  const HeaderSection({
-    super.key,
-    required this.personalInfo,
-  });
+  const HeaderSection({super.key, required this.personalInfo});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isMobile = ResponsiveHelper.isMobile(context);
-    final isTablet = ResponsiveHelper.isTablet(context);
+    ResponsiveHelper.isTablet(context);
 
     return Container(
       width: double.infinity,
@@ -38,8 +35,8 @@ class HeaderSection extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            theme.colorScheme.primary.withOpacity(0.1),
-            theme.colorScheme.secondary.withOpacity(0.1),
+            theme.colorScheme.primary.withValues(alpha: 0.1),
+            theme.colorScheme.secondary.withValues(alpha: 0.1),
           ],
         ),
       ),
@@ -74,7 +71,7 @@ class HeaderSection extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: theme.colorScheme.primary.withOpacity(0.3),
+                    color: theme.colorScheme.primary.withValues(alpha: 0.3),
                     blurRadius: isMobile ? 15 : 20,
                     offset: Offset(0, isMobile ? 5 : 10),
                   ),
@@ -97,9 +94,9 @@ class HeaderSection extends StatelessWidget {
               ),
             ),
           ),
-          
+
           SizedBox(height: isMobile ? 20 : 30),
-          
+
           // Name
           ScrollAnimatedWidget(
             id: 'header-name',
@@ -119,9 +116,9 @@ class HeaderSection extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          
+
           SizedBox(height: isMobile ? 8 : 10),
-          
+
           // Title
           ScrollAnimatedWidget(
             id: 'header-title',
@@ -141,9 +138,9 @@ class HeaderSection extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          
+
           SizedBox(height: isMobile ? 20 : 30),
-          
+
           // Contact Info
           ScrollAnimatedWidget(
             id: 'header-contact',
@@ -159,22 +156,14 @@ class HeaderSection extends StatelessWidget {
                   Icons.location_on,
                   personalInfo.location,
                 ),
-                _buildContactItem(
-                  context,
-                  Icons.email,
-                  personalInfo.email,
-                ),
-                _buildContactItem(
-                  context,
-                  Icons.phone,
-                  personalInfo.phone,
-                ),
+                _buildContactItem(context, Icons.email, personalInfo.email),
+                _buildContactItem(context, Icons.phone, personalInfo.phone),
               ],
             ),
           ),
-          
+
           SizedBox(height: isMobile ? 20 : 30),
-          
+
           // Languages
           ScrollAnimatedWidget(
             id: 'header-languages',
@@ -184,29 +173,32 @@ class HeaderSection extends StatelessWidget {
               alignment: WrapAlignment.center,
               spacing: isMobile ? 8 : 10,
               runSpacing: isMobile ? 8 : 10,
-              children: personalInfo.languagesKnown.map((language) {
-                return Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: isMobile ? 12 : 16,
-                    vertical: isMobile ? 6 : 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.primary.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: theme.colorScheme.primary.withOpacity(0.3),
-                    ),
-                  ),
-                  child: Text(
-                    language,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.primary,
-                      fontWeight: FontWeight.w500,
-                      fontSize: isMobile ? 12 : 14,
-                    ),
-                  ),
-                );
-              }).toList(),
+              children:
+                  personalInfo.languagesKnown.map((language) {
+                    return Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: isMobile ? 12 : 16,
+                        vertical: isMobile ? 6 : 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: theme.colorScheme.primary.withValues(
+                            alpha: 0.3,
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        language,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.primary,
+                          fontWeight: FontWeight.w500,
+                          fontSize: isMobile ? 12 : 14,
+                        ),
+                      ),
+                    );
+                  }).toList(),
             ),
           ),
         ],
@@ -217,15 +209,11 @@ class HeaderSection extends StatelessWidget {
   Widget _buildContactItem(BuildContext context, IconData icon, String text) {
     final theme = Theme.of(context);
     final isMobile = ResponsiveHelper.isMobile(context);
-    
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(
-          icon,
-          color: theme.colorScheme.primary,
-          size: isMobile ? 16 : 20,
-        ),
+        Icon(icon, color: theme.colorScheme.primary, size: isMobile ? 16 : 20),
         SizedBox(width: isMobile ? 6 : 8),
         Flexible(
           child: Text(

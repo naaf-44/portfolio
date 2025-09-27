@@ -7,10 +7,7 @@ import 'scroll_animated_widget.dart';
 class FlutterPackagesSection extends StatelessWidget {
   final List<FlutterPackage> flutterPackages;
 
-  const FlutterPackagesSection({
-    super.key,
-    required this.flutterPackages,
-  });
+  const FlutterPackagesSection({super.key, required this.flutterPackages});
 
   @override
   Widget build(BuildContext context) {
@@ -53,25 +50,27 @@ class FlutterPackagesSection extends StatelessWidget {
               ),
             ),
           ),
-          
+
           SizedBox(height: isMobile ? 30 : 50),
-          
+
           Container(
             constraints: BoxConstraints(
-              maxWidth: ResponsiveHelper.isDesktop(context) ? 800 : double.infinity,
+              maxWidth:
+                  ResponsiveHelper.isDesktop(context) ? 800 : double.infinity,
             ),
             child: Column(
-              children: flutterPackages.asMap().entries.map((entry) {
-                final index = entry.key;
-                final package = entry.value;
-                
-                return ScrollAnimatedWidget(
-                  id: 'package-$index',
-                  delay: Duration(milliseconds: 200 * index),
-                  slideBegin: const Offset(0, 0.3),
-                  child: _buildPackageCard(context, package, index),
-                );
-              }).toList(),
+              children:
+                  flutterPackages.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final package = entry.value;
+
+                    return ScrollAnimatedWidget(
+                      id: 'package-$index',
+                      delay: Duration(milliseconds: 200 * index),
+                      slideBegin: const Offset(0, 0.3),
+                      child: _buildPackageCard(context, package, index),
+                    );
+                  }).toList(),
             ),
           ),
         ],
@@ -79,10 +78,14 @@ class FlutterPackagesSection extends StatelessWidget {
     );
   }
 
-  Widget _buildPackageCard(BuildContext context, FlutterPackage package, int index) {
+  Widget _buildPackageCard(
+    BuildContext context,
+    FlutterPackage package,
+    int index,
+  ) {
     final theme = Theme.of(context);
     final isMobile = ResponsiveHelper.isMobile(context);
-    
+
     return Container(
       margin: EdgeInsets.only(bottom: isMobile ? 16 : 20),
       decoration: BoxDecoration(
@@ -90,20 +93,20 @@ class FlutterPackagesSection extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            theme.colorScheme.secondary.withOpacity(0.1),
-            theme.colorScheme.primary.withOpacity(0.1),
+            theme.colorScheme.secondary.withValues(alpha: 0.1),
+            theme.colorScheme.primary.withValues(alpha: 0.1),
           ],
         ),
         borderRadius: BorderRadius.circular(isMobile ? 12 : 16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: isMobile ? 10 : 15,
             offset: Offset(0, isMobile ? 3 : 5),
           ),
         ],
         border: Border.all(
-          color: theme.colorScheme.secondary.withOpacity(0.3),
+          color: theme.colorScheme.secondary.withValues(alpha: 0.3),
         ),
       ),
       child: Material(
@@ -127,9 +130,9 @@ class FlutterPackagesSection extends StatelessWidget {
                     size: isMobile ? 20 : 24,
                   ),
                 ),
-                
+
                 SizedBox(width: isMobile ? 12 : 16),
-                
+
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,21 +154,23 @@ class FlutterPackagesSection extends StatelessWidget {
                       Text(
                         'Published on pub.dev',
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.7),
+                          color: theme.colorScheme.onSurface.withValues(
+                            alpha: 0.7,
+                          ),
                           fontSize: isMobile ? 12 : 14,
                         ),
                       ),
                     ],
                   ),
                 ),
-                
+
                 Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: isMobile ? 8 : 12,
                     vertical: isMobile ? 4 : 6,
                   ),
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.secondary.withOpacity(0.1),
+                    color: theme.colorScheme.secondary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
