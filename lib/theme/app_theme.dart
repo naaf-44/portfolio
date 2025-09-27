@@ -60,7 +60,7 @@ class AppTheme {
       onSurface: textPrimaryColor,
       onBackground: textPrimaryColor,
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       color: surfaceColor,
@@ -120,7 +120,7 @@ class AppTheme {
       onSurface: darkTextPrimaryColor,
       onBackground: darkTextPrimaryColor,
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       color: darkSurfaceColor,
